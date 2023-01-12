@@ -5,7 +5,7 @@ from math import pi, sin, cos
 
 class WalkingPanda(ShowBase):
 
-    def __init__(self):
+    def __init__(self, no_rotate=False):
         ShowBase.__init__(self)
 
         # Load the environment model
@@ -16,8 +16,9 @@ class WalkingPanda(ShowBase):
         self.scene.setScale(0.25, 0.25, 0.25)
         self.scene.setPos(-8, 42, 0)
 
-        # Add the spinCameraTask procedure to the task manager
-        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
+        if (not no_rotate):
+            # Add the spinCameraTask procedure to the task manager
+            self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
 
         # Load and transform the panda actor
         self.pandaActor = Actor("models/panda-model", {"walk": "models/panda-walk4"})
